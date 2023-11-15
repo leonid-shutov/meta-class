@@ -1,0 +1,11 @@
+{
+  "name": "meta-class",
+  "version": "1.0.0",
+  "author": "Leonid Shutov <leonid.shutov.main@gmail.com>",
+  "license": "MIT",
+  "main": "meta-class.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leonid-shutov/meta-class"
+  }
+}
