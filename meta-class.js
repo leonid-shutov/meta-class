@@ -21,8 +21,10 @@ const fromKeys = (keys) => {
 const fromZodSchema = (schema) => fromKeys(Object.keys(schema.shape));
 
 const MetaClassFactory = {
-  fromKeys,
-  fromZodSchema,
+  from: {
+    keys: fromKeys,
+    zodSchema: fromZodSchema,
+  },
 };
 
 module.exports = { MetaClass: MetaClassFactory };
