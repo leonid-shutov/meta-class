@@ -1,6 +1,6 @@
 {
   "name": "@leonid-shutov/meta-class",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "Leonid Shutov <leonid.shutov.main@gmail.com>",
   "license": "MIT",
   "main": "meta-class.js",
