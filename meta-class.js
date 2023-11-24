@@ -1,30 +1,10 @@
 "use strict";
 
-const fromKeys = (keys) => {
-  class MetaClass {
-    #privateFields;
+/** @typedef {import('./meta-class').TStrategyOutput<any>} TStrategyOutput */
 
-    constructor(argsObj) {
-      this.#privateFields = argsObj;
+const strategies = require("./lib/strategies");
 
-      for (const field of keys) {
-        Object.defineProperty(MetaClass.prototype, field, {
-          get: () => this.#privateFields[field],
-        });
-      }
-    }
-  }
+/** @type {Record<string, (x: any) => TStrategyOutput>} */
+const MetaClass = { ...strategies };
 
-  return MetaClass;
-};
-
-const fromZodSchema = (schema) => fromKeys(Object.keys(schema.shape));
-
-const MetaClassFactory = {
-  from: {
-    keys: fromKeys,
-    zodSchema: fromZodSchema,
-  },
-};
-
-module.exports = { MetaClass: MetaClassFactory };
+module.exports = { MetaClass };
