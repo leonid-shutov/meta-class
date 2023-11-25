@@ -1,10 +1,14 @@
+"use strict";
+
 const assert = require("node:assert");
 const { describe, it } = require("node:test");
 const { z } = require("zod");
 const { MetaClass } = require("./meta-class");
 
 describe("fromKeys strategy", () => {
+  /** @type {(keyof {name: string; age: number; color: string})[]} */
   const keys = ["name", "age", "color"];
+
   const { metaClass: Cat, metaData } = MetaClass.fromKeys(keys);
   const cat = new Cat({ name: "Sanya", age: 3, color: "Orange tabbie" });
 
@@ -17,6 +21,22 @@ describe("fromKeys strategy", () => {
   it("Meta data is correct", () => {
     assert.deepStrictEqual(metaData.keys, keys);
     assert.notStrictEqual(metaData.keys, keys);
+  });
+
+  it("Properties are frozen", () => {
+    const reassignName = () => {
+      cat.name = "Whiskers";
+    };
+    const reassignAge = () => {
+      cat.age = 5;
+    };
+    const reassignColor = () => {
+      cat.color = "black";
+    };
+
+    assert.throws(reassignName, TypeError);
+    assert.throws(reassignAge, TypeError);
+    assert.throws(reassignColor, TypeError);
   });
 });
 
