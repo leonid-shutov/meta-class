@@ -6,18 +6,10 @@ export type TStrategyOutput<TMetaClass> = {
 };
 
 export type TMetaClass = {
-  fromKeys: <TMetaModel>(
-    keys: (keyof TMetaModel)[]
-  ) => TStrategyOutput<
-    new <TDomainModel extends TMetaModel>(argsObj: TDomainModel) => TDomainModel
-  >;
+  fromKeys: <TMetaModel>(keys: (keyof TMetaModel)[]) => TStrategyOutput<new (argsObj: TMetaModel) => TMetaModel>;
   fromZodSchema: <TMetaSchema extends ZodRawShape>(
     schema: ZodObject<TMetaSchema>
-  ) => TStrategyOutput<
-    new <TDomainModel extends zinfer<typeof schema>>(
-      argsObj: TDomainModel
-    ) => TDomainModel
-  >;
+  ) => TStrategyOutput<new (argsObj: zinfer<typeof schema>) => zinfer<typeof schema>>;
 };
 
 export const MetaClass: TMetaClass;
