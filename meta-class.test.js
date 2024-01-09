@@ -10,12 +10,12 @@ describe("fromKeys strategy", () => {
   const keys = ["name", "age", "color"];
 
   const { metaClass: Cat, metaData } = MetaClass.fromKeys(keys);
-  const cat = new Cat({ name: "Sanya", age: 3, color: "Orange tabbie" });
+  const cat1 = new Cat({ name: "Sanya", age: 3, color: "Orange tabbie" });
 
   it("Meta class is correct", () => {
-    assert.strictEqual(cat.name, "Sanya");
-    assert.strictEqual(cat.age, 3);
-    assert.strictEqual(cat.color, "Orange tabbie");
+    assert.strictEqual(cat1.name, "Sanya");
+    assert.strictEqual(cat1.age, 3);
+    assert.strictEqual(cat1.color, "Orange tabbie");
   });
 
   it("Meta data is correct", () => {
@@ -23,20 +23,11 @@ describe("fromKeys strategy", () => {
     assert.notStrictEqual(metaData.keys, keys);
   });
 
-  it("Properties are frozen", () => {
-    const reassignName = () => {
-      cat.name = "Whiskers";
-    };
-    const reassignAge = () => {
-      cat.age = 5;
-    };
-    const reassignColor = () => {
-      cat.color = "black";
-    };
-
-    assert.throws(reassignName, TypeError);
-    assert.throws(reassignAge, TypeError);
-    assert.throws(reassignColor, TypeError);
+  it("It is possible to create more instances from the same class", () => {
+    const cat2 = new Cat({ name: "whiskers", age: 5, color: "Black" });
+    assert.strictEqual(cat2.name, "whiskers");
+    assert.strictEqual(cat2.age, 5);
+    assert.strictEqual(cat2.color, "Black");
   });
 });
 

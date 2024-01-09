@@ -5,6 +5,9 @@
   "license": "MIT",
   "main": "meta-class.js",
   "types": "meta-class.d.ts",
+  "scripts": {
+    "test": "node --test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/leonid-shutov/meta-class"
